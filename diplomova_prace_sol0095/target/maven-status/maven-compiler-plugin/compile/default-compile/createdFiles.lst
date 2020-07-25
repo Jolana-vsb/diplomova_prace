@@ -4,6 +4,7 @@ cz\vsb\semestralni_projekt\grammar_tool\Processor.class
 cz\vsb\semestralni_projekt\grammar_tool\GrammarGenerator.class
 cz\vsb\semestralni_projekt\grammar_tool\XMLFileReader.class
 cz\vsb\semestralni_projekt\grammar_tool\ConsolePrinter.class
+cz\vsb\semestralni_projekt\grammar_tool\GrammarApplier.class
 cz\vsb\semestralni_projekt\grammar_tool\Colors.class
 cz\vsb\Main.class
 cz\vsb\semestralni_projekt\grammar_tool\GrammarCompiler.class

@@ -5,11 +5,11 @@ public class ResultPreparator {
     private StringBuilder xmlData = new StringBuilder();
 
     private String symbolsToXMLFormat(String str){
-        String replaced = str.replace("&", "&amp;")
-                .replace("\"","&quot;")
-                .replace(">","&gt;")
-                .replace("<","&lt;")
-                .replace("'","&apos;");
+        String replaced = str.replaceAll("&", "&amp;")
+                .replaceAll("\"","&quot;")
+                .replaceAll(">","&gt;")
+                .replaceAll("<","&lt;")
+                .replaceAll("'","&apos;");
 
         return replaced;
     }

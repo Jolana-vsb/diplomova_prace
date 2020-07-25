@@ -14,8 +14,6 @@ import static org.antlr.v4.runtime.CharStreams.fromString;
 
 public class Processor implements Runnable, PropertyLoader, ConsolePrinter {
 
-    private Lexer lexer;
-    private Parser parser;
     private String query;
     private int rowID;
     private Class<?> lexerClass;
@@ -23,9 +21,9 @@ public class Processor implements Runnable, PropertyLoader, ConsolePrinter {
     private TreeToXML treeToXML;
     private ResultPreparator resultPreparator;
     private DataPreparator dataPreparator;
+    private GrammarApplier grammarApplier;
 
-
-    public Processor(String query, int rowID, Class<?> lexerClass, Class<?> parserClass, TreeToXML treeToXML) {
+    public Processor(String query, int rowID, Class<?> lexerClass, Class<?> parserClass, TreeToXML treeToXML, GrammarApplier grammarApplier) {
         this.query = query.toLowerCase();
         this.rowID = rowID;
         this.lexerClass = lexerClass;
@@ -33,70 +31,23 @@ public class Processor implements Runnable, PropertyLoader, ConsolePrinter {
         this.treeToXML = treeToXML;
         this.resultPreparator = new ResultPreparator();
         this.dataPreparator = new DataPreparator();
+        this.grammarApplier = grammarApplier;
     }
 
     @Override
     public void run() {
         if(dataPreparator.containsSelect(query)){
             query = dataPreparator.encodeXML(query);
-            useRule();
-        }
-    }
+            String tree;
 
-    private boolean useRule(){
-        try{
-            setLexerAndParser();
-            removeListeners();
-            setInterpreters();
-
-            Method entryPointMethod = parserClass.getMethod(loadProperty("grammar.rule"));
-            ParseTree parserTree = (ParseTree) entryPointMethod.invoke(parser);
-
-            if(parserTree != null && parser.getNumberOfSyntaxErrors() == 0){
-                String tree =  parserTree.toStringTree(parser);
-                if(!tree.equals("(root <EOF>)")){
-                    resultPreparator.prepareData(query, tree, rowID);
-                    treeToXML.writeToFile(resultPreparator.getXmlData());
-                }
+            synchronized (grammarApplier){
+                tree = grammarApplier.useRule(lexerClass, parserClass, query);
             }
 
-            clearDFA();
-            return true;
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
+            if(tree != null && !tree.equals("(root <EOF>)")){
+                resultPreparator.prepareData(query, tree, rowID);
+                treeToXML.writeToFile(resultPreparator.getXmlData());
+            }
         }
-        writeToConsole(Colors.RED, "Incorrect grammar name or rule name, program will be stopped!");
-        return false;
-    }
-
-    private void removeListeners(){
-        lexer.removeErrorListener(ConsoleErrorListener.INSTANCE);
-        parser.removeErrorListener(ConsoleErrorListener.INSTANCE);
-    }
-
-    private void clearDFA(){
-        lexer.getInterpreter().clearDFA();
-        parser.getInterpreter().clearDFA();
-    }
-
-    private void setInterpreters(){
-        lexer.setInterpreter(new LexerATNSimulator(lexer, lexer.getATN(), lexer.getInterpreter().decisionToDFA, new PredictionContextCache()));
-        parser.setInterpreter(new ParserATNSimulator(parser, parser.getATN(), parser.getInterpreter().decisionToDFA, new PredictionContextCache()));
-    }
-
-    private void setLexerAndParser() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        CodePointCharStream chs = fromString(query);
-        Constructor lexerCTor = lexerClass.getConstructor(CharStream.class);
-        lexer = (Lexer) lexerCTor.newInstance(chs);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-        Constructor parserCTor = parserClass.getConstructor(TokenStream.class);
-        parser = (Parser) parserCTor.newInstance(tokens);
     }
 }

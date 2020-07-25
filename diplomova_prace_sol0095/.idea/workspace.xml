@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8f0fdcf-617d-4d35-86b2-ecb0b72f2ad4" name="Default Changelist" comment="" />
+    <list default="true" id="3e099f59-0451-47e1-8dd5-af297ae9c32a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +15,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectId" id="1ezogljD75Afk8EKYXvnfUo55R6" />
+  <component name="ProjectId" id="1f4noLww57sUdfJjUmxWTnJYXvy" />
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -36,11 +36,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d8f0fdcf-617d-4d35-86b2-ecb0b72f2ad4" name="Default Changelist" comment="" />
-      <created>1595333896203</created>
+      <changelist id="3e099f59-0451-47e1-8dd5-af297ae9c32a" name="Default Changelist" comment="" />
+      <created>1595486405703</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1595333896203</updated>
+      <updated>1595486405703</updated>
     </task>
     <servers />
   </component>

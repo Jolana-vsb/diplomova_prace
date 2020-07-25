@@ -4,21 +4,25 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class GrammarTool implements PropertyLoader, ConsolePrinter {
     private String grammarName;
     private TreeToXML treeToXML;
-    Class<?> lexerClass;
-    Class<?> parserClass;
+    private Class<?> lexerClass;
+    private Class<?> parserClass;
     private ExecutorService service;
+    private GrammarApplier grammarApplier;
 
     public GrammarTool(){
         grammarName = loadProperty("grammar.name");
         treeToXML = new TreeToXML();
         service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        grammarApplier = new GrammarApplier();
     }
 
     public void runTool(){
@@ -47,20 +51,19 @@ public class GrammarTool implements PropertyLoader, ConsolePrinter {
 
         while(!fr.getEndOfFile()){
             if(fr.readFile()){
-                service.execute(new Processor(fr.getCode(), fr.getRowID(), lexerClass, parserClass, treeToXML));
+                service.execute(new Processor(fr.getCode(), fr.getRowID(), lexerClass, parserClass, treeToXML, grammarApplier));
             }
-
         }
 
         service.shutdown();
+
         try {
-            service.awaitTermination(10L, TimeUnit.HOURS);
+            service.awaitTermination(6L, TimeUnit.HOURS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         treeToXML.stopWriting();
-        fr.stopReading();
     }
 
     private boolean loadClasses(){

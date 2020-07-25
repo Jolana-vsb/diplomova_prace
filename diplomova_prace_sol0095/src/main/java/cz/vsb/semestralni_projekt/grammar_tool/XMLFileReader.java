@@ -143,6 +143,7 @@ public class XMLFileReader implements PropertyLoader, ConsolePrinter {
 
         if(line == null && !expression){
             endOfFile = true;
+            stopReading();
             return false;
         }
         return true;
