@@ -1,7 +1,15 @@
 package cz.vsb.semestralni_projekt.grammar_tool;
 
+import org.antlr.v4.runtime.Parser;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.Trees;
+
+import java.util.Arrays;
+import java.util.List;
+
 public class ResultPreparator {
-    private int space;
+    private static int space = 2;
     private StringBuilder xmlData = new StringBuilder();
 
     private String symbolsToXMLFormat(String str){
@@ -22,89 +30,43 @@ public class ResultPreparator {
         this.xmlData.append("  </sqlSelect>\n");
     }
 
-    private void addTagAndName(String tag, String name, int space){
-        if(tag.length() > 0 && !tag.equals(" "))
-            addString("<" + tag + ">", space);
-
-        if(name.length() > 0 && !name.equals(" ")){
-            name = symbolsToXMLFormat(name);
-            addString(name, space + 1);
-        }
-    }
-
-    private void addString(String str, int space){
-        for(int i = 0; i < space; i++){
-            this.xmlData.append("  ");
-        }
-        this.xmlData.append(str + "\n");
-    }
-
-    public void prepareData(String select, String selectTree, int rowId){
-        this.space = 1;
+    public void prepareData(String select, ParseTree tree, int rowId, Parser parser){
         setSelectStart(select, rowId);
-        getXMLFromTree(selectTree);
+        getXMLTree(parser, tree, select);
         setSelectEnd();
     }
 
-    private void getXMLFromTree(String tree){
+    private void getXMLTree(Parser parser, ParseTree tree, String query) {
+        recursive(tree, space, Arrays.asList(parser.getRuleNames()),query);
+    }
 
-        TreeToXMLParser xmlParser = new TreeToXMLParser();
-        space++;
+    private void recursive(ParseTree tree, int offset, List<String> ruleNames, String query) {
+        for (int i = 0; i < offset; i++) {
+            xmlData.append("  ");
+        }
+        String element = Trees.getNodeText(tree, ruleNames);
 
-        for(int i = 1; i < tree.length()-1; i++){
-            xmlParser.checkCharacter(i, tree.charAt(i));
+        if(element.equals("<EOF>"))
+            element = element.replaceAll("<", "").replaceAll(">", "");
 
-            if(xmlParser.canTakeSubstring()){
-                String tag = "", name = "";
-                String treeSubstring = xmlParser.getSubstring(tree);
-                Boolean writeName = false;
-                boolean writeTag = true;
-                boolean callRecursive = true;
+        boolean occurrence = !query.contains(element);
+        if(occurrence)
+            xmlData.append("<" + element + ">").append("\n");
+        else
+            xmlData.append(symbolsToXMLFormat(element)).append("\n");
 
-                for(int k = 1; k < treeSubstring.length(); k++){
-                    if(treeSubstring.charAt(k) == ' '){
-                        writeTag = false;
-                        if(treeSubstring.charAt(k+1) == '\'' || treeSubstring.charAt(k+1) == '\"' || treeSubstring.charAt(k+1) == '`'){
-                            name = treeSubstring.substring(k+1, treeSubstring.length()-1);
-                            callRecursive = false;
-                            break;
-                        }
-                        else
-                            writeName = true;
-                    }
-                    if(writeTag)
-                        tag+=treeSubstring.charAt(k);
-                    else if(writeName && treeSubstring.charAt(k) != '(' && treeSubstring.charAt(k) != ')')
-                        name+=treeSubstring.charAt(k);
-                    else if(treeSubstring.charAt(k) == '(' || treeSubstring.charAt(k) == ')')
-                        break;
-                }
-
-                if(callRecursive)
-                    callRecursion(tag, name, treeSubstring, xmlParser);
-                else
-                    endFunction(tag, name, xmlParser);
+        if (tree instanceof ParserRuleContext) {
+            ParserRuleContext prc = (ParserRuleContext) tree;
+            if (prc.children != null) {
+                for (ParseTree child : prc.children)
+                    recursive(child, offset + 1, ruleNames,query);
             }
         }
-    }
-
-    private void callRecursion(String tag, String name, String treeSubstring, TreeToXMLParser xmlParser){
-        addTagAndName(tag, name, space);
-        getXMLFromTree(treeSubstring);
-        space--;
-        addAndRestart(tag, xmlParser);
-    }
-
-    private void endFunction(String tag, String name, TreeToXMLParser xmlParser){
-        addTagAndName(tag, name, space);
-        addAndRestart(tag, xmlParser);
-    }
-
-    private void addAndRestart(String tag, TreeToXMLParser xmlParser){
-        if(tag.length() > 0 && !tag.equals(" "))
-            addString("</" + tag + ">", space);
-
-        xmlParser.restartVariables();
+        if(occurrence){
+            for (int i = 0; i < offset; i++)
+                xmlData.append("  ");
+            xmlData.append("</" + element + ">").append("\n");
+        }
     }
 
     public String getXmlData(){

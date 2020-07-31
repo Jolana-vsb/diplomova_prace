@@ -13,17 +13,14 @@ public class DataPreparator {
     }
 
     private String encodeString(String line){
-        while(line.contains("&lt;") ||line.contains("&gt;") || line.contains("&amp;")){
-            line = line.replaceAll("&lt;","<")
-                    .replaceAll("&gt;",">")
-                    .replaceAll("&amp;", "&");
-        }
-        while(line.contains("&lt") ||line.contains("&gt") || line.contains("&amp")){
-            line = line.replaceAll("&lt","<")
-                    .replaceAll("&gt",">")
-                    .replaceAll("&amp", "&");
-        }
+        while(line.contains("&amp;"))
+            line = line.replaceAll("&amp;", "&");
 
+        while(line.contains("&amp"))
+            line = line.replaceAll("&amp", "&");
+
+        line = line.replaceAll("&lt;","<").replaceAll("&gt;",">");
+        line = line.replaceAll("&lt","<").replaceAll("&gt",">");
         line = line.replaceAll("\n", " ").replaceAll("\r", " ").toUpperCase();
         return line;
     }

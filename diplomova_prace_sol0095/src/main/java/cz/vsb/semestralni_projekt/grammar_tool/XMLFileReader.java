@@ -42,7 +42,7 @@ public class XMLFileReader implements PropertyLoader, ConsolePrinter {
                 reader.close();
             if(inputStream != null)
                 inputStream.close();
-            writeToConsole(Colors.GREEN, "Reading finished!");
+            writeToConsole(Colors.GREEN, "Reading finished! ...file writing continue...");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,11 +88,6 @@ public class XMLFileReader implements PropertyLoader, ConsolePrinter {
         rowID = getOccurence(rowIdElement +"(.*?)\"", row).replaceAll("\\D+","");
         ids.add(rowID);
         canTakeCodeElements = true;
-
-     /*   rowID = getOccurence(rowIdElement +"(.*?)\"", row).replaceAll("\\D+","");
-        ids.add(rowID);
-        canTakeCodeElements = true;*/
-
     }
 
     private void getCodeElements(String row){
