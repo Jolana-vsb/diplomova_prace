@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class XMLFileReader implements PropertyLoader, ConsolePrinter {
-    private FileInputStream inputStream = null;
     private BufferedReader reader = null;
     private boolean expression = false;
     private String tag, rowID;
@@ -26,8 +25,7 @@ public class XMLFileReader implements PropertyLoader, ConsolePrinter {
         tags = loadProperty("grammar.tags").split(" ");
         try {
             writeToConsole(Colors.WHITE, "Starting to read...");
-            inputStream = new FileInputStream(loadProperty("xml.input"));
-            reader = new BufferedReader(new InputStreamReader(inputStream));
+            reader = new BufferedReader(new FileReader(loadProperty("xml.input")));
             return true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -40,8 +38,6 @@ public class XMLFileReader implements PropertyLoader, ConsolePrinter {
         try {
             if(reader != null)
                 reader.close();
-            if(inputStream != null)
-                inputStream.close();
             writeToConsole(Colors.GREEN, "Reading finished! ...file writing continue...");
         } catch (IOException e) {
             e.printStackTrace();
