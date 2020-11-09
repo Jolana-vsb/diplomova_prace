@@ -33,7 +33,7 @@ public class TreeToXML implements PropertyLoader, ConsolePrinter {
 
     public void stopWriting(){
         printString("</sqlSelects>", 0);
-        writeToConsole(Colors.GREEN, "...writing to XML was successful.");
+        writeToConsole(Colors.GREEN, "...writing to XML was successfull.");
         try {
             bufferedWriter.close();
         } catch (IOException e) {

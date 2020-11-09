@@ -71,13 +71,13 @@ public class XMLFileReader implements PropertyLoader, ConsolePrinter {
             parentID = parentID.replaceAll("\\D+","");
 
             if(ids.contains(parentID))
-                getRowID(row);
+              getRowID(row);
             else
                 return;
         }
 
         if(canTakeCodeElements)
-            getCodeElements(row);
+           getCodeElements(row);
     }
 
     private void getRowID(String row){

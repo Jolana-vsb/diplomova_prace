@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ResultPreparator {
-    private static int space = 2;
     private StringBuilder xmlData = new StringBuilder();
+    private StringBuilder specialWord = new StringBuilder();
 
     private String symbolsToXMLFormat(String str){
         String replaced = str.replaceAll("&", "&amp;")
@@ -23,11 +23,11 @@ public class ResultPreparator {
     }
 
     private void setSelectStart(String select, int rowId){
-        this.xmlData.append("  <sqlSelect>\n    <rowId>\n      " + rowId + "\n    </rowId>\n    <selectCode>\n      " + symbolsToXMLFormat(select) + "\n    </selectCode>\n");
+        this.xmlData.append("<sqlSelect><rowId>" + rowId + "</rowId><selectCode>" + symbolsToXMLFormat(select) + "</selectCode>");
     }
 
     private void setSelectEnd(){
-        this.xmlData.append("  </sqlSelect>\n");
+        this.xmlData.append("</sqlSelect>\n");
     }
 
     public void prepareData(String select, ParseTree tree, int rowId, Parser parser){
@@ -37,35 +37,45 @@ public class ResultPreparator {
     }
 
     private void getXMLTree(Parser parser, ParseTree tree, String query) {
-        recursive(tree, space, Arrays.asList(parser.getRuleNames()),query);
+        recursive(tree, Arrays.asList(parser.getRuleNames()),query);
     }
 
-    private void recursive(ParseTree tree, int offset, List<String> ruleNames, String query) {
-        for (int i = 0; i < offset; i++) {
-            xmlData.append("  ");
-        }
+    private void recursive(ParseTree tree, List<String> ruleNames, String query) {
         String element = Trees.getNodeText(tree, ruleNames);
 
         if(element.equals("<EOF>"))
             element = element.replaceAll("<", "").replaceAll(">", "");
 
         boolean occurrence = !query.contains(element);
-        if(occurrence)
-            xmlData.append("<" + element + ">").append("\n");
-        else
-            xmlData.append(symbolsToXMLFormat(element)).append("\n");
+        if(occurrence) {
+            if (specialWord.length() > 0) {
+                specialWord.append("</specialWord>");
+                xmlData.append(specialWord);
+                specialWord.setLength(0);
+            }
+            xmlData.append("<" + element + ">");
+        }
+        else {
+            if (specialWord.length() > 0)
+                specialWord.append(" " + symbolsToXMLFormat(element));
+            else
+                specialWord.append("<specialWord>" + symbolsToXMLFormat(element));
+        }
 
         if (tree instanceof ParserRuleContext) {
             ParserRuleContext prc = (ParserRuleContext) tree;
             if (prc.children != null) {
                 for (ParseTree child : prc.children)
-                    recursive(child, offset + 1, ruleNames,query);
+                    recursive(child, ruleNames,query);
             }
         }
         if(occurrence){
-            for (int i = 0; i < offset; i++)
-                xmlData.append("  ");
-            xmlData.append("</" + element + ">").append("\n");
+            if (specialWord.length() > 0) {
+                specialWord.append("</specialWord>");
+                xmlData.append(specialWord);
+                specialWord.setLength(0);
+            }
+            xmlData.append("</" + element + ">");
         }
     }
 

@@ -1,22 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e099f59-0451-47e1-8dd5-af297ae9c32a" name="Default Changelist" comment="" />
+    <list default="true" id="02ba0c0b-acb9-4fcc-ab9e-279740c20769" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jar soubor/DP.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.properties" beforeDir="false" afterPath="$PROJECT_DIR$/file.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nástroj2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/GrammarCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/GrammarCompiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/PropertyLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/PropertyLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/ResultPreparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/ResultPreparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/TreeToXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/TreeToXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/XMLFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/vsb/semestralni_projekt/grammar_tool/XMLFileReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/DataPreparator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/DataPreparator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/GrammarApplier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/GrammarApplier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/GrammarCompiler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/GrammarCompiler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/GrammarGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/GrammarGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/GrammarTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/GrammarTool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/Processor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/Processor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/ResultPreparator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/ResultPreparator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/TreeToXML.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/TreeToXML.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/XMLFileReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/vsb/semestralni_projekt/grammar_tool/XMLFileReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/diplomovaPrace-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/diplomovaPrace-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1f4noLww57sUdfJjUmxWTnJYXvy" />
+  <component name="ProjectId" id="1k3Axg8d6CrcHtzWi9iSILzglq9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RunDashboard">
@@ -31,17 +56,48 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cz.vsb.Main" />
+      <module name="semestralniProjekt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cz.vsb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3e099f59-0451-47e1-8dd5-af297ae9c32a" name="Default Changelist" comment="" />
-      <created>1595486405703</created>
+      <changelist id="02ba0c0b-acb9-4fcc-ab9e-279740c20769" name="Default Changelist" comment="" />
+      <created>1604919148279</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1595486405703</updated>
+      <updated>1604919148279</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

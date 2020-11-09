@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public interface PropertyLoader {
 
-    default String loadProperty(String name){
+     default String loadProperty(String name){
         String resourceName = "file.properties";
         String itemResult = "";
         Properties prop = new Properties();

@@ -26,10 +26,10 @@ public class GrammarCompiler implements PropertyLoader, ConsolePrinter {
                 System.out.println(diagnostic.getMessage(null));
             }
 
-            writeToConsole(Colors.RED, "Compiling was not successful!");
+            writeToConsole(Colors.RED, "Compiling was not successfull!");
         }
         else{
-            writeToConsole(Colors.GREEN, "...compiling was successful.");
+            writeToConsole(Colors.GREEN, "...compiling was successfull.");
         }
 
         try {
